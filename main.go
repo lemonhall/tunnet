@@ -76,7 +76,7 @@ func main() {
     log.Fatal("fail to listen udp")
   }
   go func() {
-    buffer := make([]byte, MTU)
+    buffer := make([]byte, MTU * 2)
     var count int
     var err error
     var remoteAddr *net.UDPAddr
@@ -93,6 +93,7 @@ func main() {
       if remotes[remoteAddr.String()] == nil {
         remotes[remoteAddr.String()] = remoteAddr
       }
+      fmt.Printf("write to tun %d\n", count)
       file.Write(buffer[:count])
     }
   }()
