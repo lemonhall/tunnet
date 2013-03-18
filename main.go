@@ -106,7 +106,7 @@ func main() {
     remotes[remoteAddr.String()] = remoteAddr
   }
 
-  buffer := make([]byte, MTU)
+  buffer := make([]byte, MTU * 2)
   var count int
   for {
     count, err = file.Read(buffer)
